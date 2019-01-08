@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            小镇产业
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-category-tabber (changed)="onCategoryChanged($event)"></app-category-tabber>
+    <app-content-list></app-content-list>
+</ion-content>

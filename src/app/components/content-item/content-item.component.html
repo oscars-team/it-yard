@@ -1,0 +1,19 @@
+<div class="content" *ngIf="displayType() === 'horizental'" (click)="onClick($event)">
+    <div class="title">
+        <div>{{title}}</div>
+        <p>{{getPublicFromNow()}}</p>
+    </div>
+    <div class="image">
+        <img [src]="image" />
+    </div>
+</div>
+
+<div class="content-vertical" *ngIf="displayType() === 'vertical'" (click)="onClick($event)">
+    <div class="title">
+        <div>{{title}}</div>
+        <p>{{getPublicFromNow()}}</p>
+    </div>
+    <div class="image" *ngIf="image.length > 0">
+        <img [src]="image" />
+    </div>
+</div>

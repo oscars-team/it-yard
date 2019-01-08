@@ -1,0 +1,38 @@
+.title{
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+
+.desc{
+    font-size: .8em;
+    color:#ccc;
+}
+
+.media{
+    margin-top:1em;
+    margin-left:-16px;
+    margin-right: -16px;
+}
+
+.content{
+    line-height: 1.6em;
+    padding-bottom: .2em;
+    margin-bottom: .3em;
+    border-bottom: 1px dashed #ccc;
+}
+
+.comment{
+    width:100%;
+    box-sizing: border-box;
+    line-height: 1.2em;
+    p{
+        margin:.2em;
+        padding:.2em;
+    }
+    .cmt-ctt{
+        display: flex;
+        font-size: .8em;
+        color:#333;
+        padding:.5em;
+    }
+}

@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            扬中智慧小镇
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides class="slides" pager="false" [options]="slideOpts">
+        <ion-slide>
+            <img class="slide-img" src="/assets/sp-head.png" />
+        </ion-slide>
+        <ion-slide>
+            <img class="slide-img" src="/assets/sp-head.png" />
+        </ion-slide>
+        <ion-slide>
+            <img class="slide-img" src="/assets/sp-head.png" />
+        </ion-slide>
+    </ion-slides>
+    <div class="more-outline">
+        <ion-slides pager="false" [options]="slideOpts">
+            <ion-slide class="more-slide">
+                <ul class="more-opts">
+                    <li>
+                        <div style="background-color:rgba(253,145,122,255)">
+                            <ion-icon name="airplane"></ion-icon>
+                        </div>
+                        <ion-label>小镇航拍</ion-label>
+                    </li>
+                    <li>
+                        <div style="background-color:rgba(127,207,200,255)">
+                            <ion-icon name="flower"></ion-icon>
+                        </div>
+                        <ion-label>小镇规划</ion-label>
+                    </li>
+                    <li>
+                        <div style="background-color:rgba(180,212,103,255)">
+                            <ion-icon name="partly-sunny"></ion-icon>
+                        </div>
+                        <ion-label>小镇旅游</ion-label>
+                    </li>
+                    <li>
+                        <div style="background-color:rgba(138,201,148,255)">
+                            <ion-icon name="happy"></ion-icon>
+                        </div>
+                        <ion-label>小镇便民</ion-label>
+                    </li>
+                </ul>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div style="width:100%; height:0.5em;"></div>
+    <app-content-list
+        title="小镇动态"
+        mode="firstWeight"></app-content-list>
+</ion-content>

@@ -1,0 +1,7 @@
+<div class="category-tabber" scrollx="true">
+    <div class="category">
+        <div *ngFor="let c of categories"
+            [class]="c.active ? 'active' : ''"
+            (click)="onItemClick(c)">{{c.title}}</div>
+    </div>
+</div>

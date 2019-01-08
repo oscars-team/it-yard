@@ -1,0 +1,11 @@
+<div class="content-list">
+    <p class="headline" *ngIf="title.length > 0">{{title}}</p>
+    <div class="container">
+        <app-content-item *ngFor="let item of getDatasource()" 
+        [title]="item.title" 
+        [image]="item.image" 
+        [time]="item.time"
+        [display]="item.display"
+        ></app-content-item>
+    </div>
+</div>

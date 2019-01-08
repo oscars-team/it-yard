@@ -1,0 +1,16 @@
+.category-tabber{
+    background-color:white;
+    .category{
+        width:max-content;
+        div{
+            display: inline-block;
+            padding:.75em;
+            border-bottom: 1px solid #ddd;
+            color:#aeaeae;
+            &.active{
+                border-bottom: 1px solid var(--ion-toolbar-background);
+                color:var(--ion-toolbar-background);
+            }
+        }
+    }
+}

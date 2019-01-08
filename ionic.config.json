@@ -1,0 +1,7 @@
+{
+  "name": "it-yard",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
