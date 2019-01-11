@@ -2,8 +2,11 @@
     background-color:white;
     .category{
         width:max-content;
+        min-width: 100%;
+        border-bottom: 1px solid #ddd;
         div{
             display: inline-block;
+            margin-bottom: -1px;
             padding:.75em;
             border-bottom: 1px solid #ddd;
             color:#aeaeae;

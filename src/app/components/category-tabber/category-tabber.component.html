@@ -1,7 +1,5 @@
-<div class="category-tabber" scrollx="true">
+<div class="category-tabber" scrollx="true" *ngIf="dataSource.length > 0">
     <div class="category">
-        <div *ngFor="let c of categories"
-            [class]="c.active ? 'active' : ''"
-            (click)="onItemClick(c)">{{c.title}}</div>
+        <div *ngFor="let c of dataSource" [class]="c.active ? 'active' : ''" (click)="onItemClick(c)">{{c.title}}</div>
     </div>
 </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { RequestService } from '../../services/request.service'
 @Component({
     selector: 'app-content-list',
     templateUrl: './content-list.component.html',
@@ -15,37 +15,22 @@ export class ContentListComponent implements OnInit {
         vertical: 全部垂直显示
     */
     @Input() mode: String = 'normal'
-    contents = [{
-        id: 1,
-        title: '扬中市检察院组织开展公益诉讼主题宣传活动 在12月4日“国家宪法日”来临之际...',
-        time: '2019-1-3 13:58:49',
-        image: '/assets/sp-news.png',
-        display: 'horizental'
-    }, {
-        id: 2,
-        title: '扬中市检察院组织开展公益诉讼主题宣传活动 在12月4日“国家宪法日”来临之际...',
-        time: '2019-1-3 13:58:49',
-        image: '/assets/sp-news.png',
-        display: 'horizental'
-    }, {
-        id: 3,
-        title: '扬中市检察院组织开展公益诉讼主题宣传活动 在12月4日“国家宪法日”来临之际...',
-        time: '2019-1-3 13:58:49',
-        image: '/assets/sp-news.png',
-        display: 'horizental'
-    }, {
-        id: 4,
-        title: '扬中市检察院组织开展公益诉讼主题宣传活动 在12月4日“国家宪法日”来临之际...',
-        time: '2019-1-3 13:58:49',
-        image: '/assets/sp-news.png',
-        display: 'horizental'
-    }, {
-        id: 5,
-        title: '扬中市检察院组织开展公益诉讼主题宣传活动 在12月4日“国家宪法日”来临之际...',
-        time: '2019-1-3 13:58:49',
-        image: '/assets/sp-news.png',
-        display: 'horizental'
-    }]
+
+    channelId: Number = -1
+    @Input()
+    get channel(): Number {
+        return this.channelId;
+    }
+    set channel(v: Number) {
+        this.channelId = v;
+        this.getContents();
+    }
+
+    @Output()
+    channelChange: EventEmitter<any> = new EventEmitter();
+
+    contentLoaded: Boolean = false;
+    contents = []
 
     getDatasource() {
         let data = this.contents;
@@ -61,10 +46,36 @@ export class ContentListComponent implements OnInit {
         return data;
     }
 
+    getContents() {
+        // 具有特定频道的List, 抓取List值
+        this.contentLoaded = false;
+        if (this.channel >= 0) {
+            this.http.contents({ cid: this.channel }, res => {
+                this.contents = res;
+                this.contentLoaded = true;
+            })
+        }
+    }
 
-    constructor() { }
+    refresh(callback?) {
+        // 具有特定频道的List, 抓取List值
+        this.contentLoaded = false;
+        if (this.channel >= 0) {
+            this.http.contents({ cid: this.channel }, res => {
+                this.contents = res;
+                this.contentLoaded = true;
+                if (callback) callback(res);
+            })
+        }
+    }
+
+
+    constructor(
+        private http: RequestService
+    ) { }
 
     ngOnInit() {
+        this.getContents();
     }
 
 }

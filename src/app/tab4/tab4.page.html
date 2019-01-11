@@ -5,8 +5,14 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
+<app-category-tabber class="tabber" [categories]="subChannels" (changed)="onCategoryChanged($event)"></app-category-tabber>
 <ion-content>
-    <app-category-tabber (changed)="onCategoryChanged($event)"></app-category-tabber>
-    <app-content-list></app-content-list>
+    <ion-refresher class="refresher" slot="fixed" pullMax="150" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-down" pullingText="下拉刷新" refreshingSpinner="circles"
+            refreshingText="加载中...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div class="content-tabber">
+        <app-content-list #contentList class="content" [(channel)]="activeChannel" *ngIf="activeChannel>=0"></app-content-list>
+    </div>
 </ion-content>
