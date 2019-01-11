@@ -8,6 +8,7 @@ import { RequestService } from '../../services/request.service'
 export class ContentListComponent implements OnInit {
 
     @Input() title: String = ''
+    @Input() titleVisible: Boolean = false;
     /*
     *   显示模式
         normal: 正常全部水平显示
@@ -15,7 +16,6 @@ export class ContentListComponent implements OnInit {
         vertical: 全部垂直显示
     */
     @Input() mode: String = 'normal'
-
     channelId: Number = -1
     @Input()
     get channel(): Number {

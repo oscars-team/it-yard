@@ -35,14 +35,14 @@ export class AppComponent {
         if (!this.storage.getChannelTree())
             this.storage.setChannelTree(() => {
                 // 保存完之后才可以进入
-                this.navController.navigateRoot("home");
+                this.navController.navigateRoot("home/tab1");
                 setTimeout(() => {
                     this.splashScreen.hide();
                 }, 500)
             });
         // 如果APP中已经有频道, 那么可以直接进入APP
         else {
-            this.navController.navigateRoot("home");
+            this.navController.navigateRoot("home/tab1");
             this.splashScreen.hide();
         }
 

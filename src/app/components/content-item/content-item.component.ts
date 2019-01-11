@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import { NavController } from '@ionic/angular'
+import { NavigationService } from "../../services/navigation.service";
 import * as moment from 'moment/moment'
 @Component({
     selector: 'app-content-item',
@@ -9,10 +10,13 @@ import * as moment from 'moment/moment'
 export class ContentItemComponent implements OnInit {
 
     @Input() display: String = 'horizental'
+    @Input() cateName: String = '';
     @Input() title: String = '内容标题'
     @Input() time: Date = new Date()
     @Input() image: String = ''
-
+    @Input() video: String = ''
+    @Input() content: String = ''
+    @Input() hits: Number = 0;
     /*
     *   显示模式:
         如果该项没有图片, 垂直显示
@@ -31,15 +35,25 @@ export class ContentItemComponent implements OnInit {
         return moment(this.time).fromNow()
     }
 
+
     constructor(
-        private navControl: NavController
+        private navControl: NavController,
+        private navService: NavigationService
     ) {
 
     }
 
 
     onClick() {
-        console.log(this);
+        this.navService.navParams = {
+            cateName: this.cateName,
+            title: this.title,
+            publish: this.getPublicFromNow(),
+            image: this.image,
+            video: this.video,
+            content: this.content,
+            hits: this.hits
+        }
         this.navControl.navigateForward('content-view')
     }
 

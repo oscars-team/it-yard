@@ -13,6 +13,6 @@
         </ion-refresher-content>
     </ion-refresher>
     <div class="content-tabber">
-        <app-content-list #contentList class="content" [(channel)]="activeChannel" *ngIf="activeChannel>=0"></app-content-list>
+        <app-content-list #contentList class="content" [(channel)]="activeChannel" *ngIf="activeChannel>=0" [title]="activeChannelName"></app-content-list>
     </div>
 </ion-content>

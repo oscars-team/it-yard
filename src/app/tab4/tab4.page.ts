@@ -11,7 +11,7 @@ export class Tab4Page {
 
     subChannels: Array<any> = []
     activeChannel: Number = -1;
-
+    activeChannelName: String = '';
     @ViewChild('contentList')
     contentList: ContentListComponent
 
@@ -23,13 +23,16 @@ export class Tab4Page {
         let subChannels: Array<any> = channelTree.children;
         if (Array.isArray(subChannels) && subChannels.length > 0) {
             this.subChannels = (subChannels.find(p => p.title == '文化沙龙') || {}).children || [];
-            if (Array.isArray(this.subChannels) && this.subChannels.length > 0)
+            if (Array.isArray(this.subChannels) && this.subChannels.length > 0) {
                 this.activeChannel = this.subChannels[0].cateId;
+                this.activeChannelName = this.subChannels[0].title;
+            }
         }
     }
 
     onCategoryChanged(c) {
         this.activeChannel = c.cateId;
+        this.activeChannelName = c.title;
     }
 
     doRefresh(event) {
