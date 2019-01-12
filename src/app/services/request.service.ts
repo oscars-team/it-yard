@@ -10,8 +10,8 @@ export class RequestService {
     private setTimeout = 3000; // 默认的超时时间
 
     private getApi(url) {
-        // return `http://39.108.68.227:88/${url}`;
-        return `http://localhost/${url}`;
+        return `http://39.108.68.227:88/${url}`;
+        // return `http://localhost/${url}`;
     }
     constructor(
         private http: HttpClient
