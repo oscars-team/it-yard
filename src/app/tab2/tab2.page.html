@@ -5,14 +5,21 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<app-category-tabber class="tabber"  [categories]="subChannels" (changed)="onCategoryChanged($event)"></app-category-tabber>
+<app-category-tabber class="tabber" [categories]="subChannels" (changed)="onCategoryChanged($event)"></app-category-tabber>
 <ion-content>
-    <ion-refresher class="refresher" slot="fixed" pullMax="150" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="arrow-down" pullingText="下拉刷新" refreshingSpinner="circles"
-            refreshingText="加载中...">
+    <ion-refresher class="refresher" slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-down" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="加载中...">
         </ion-refresher-content>
     </ion-refresher>
     <div class="content-tabber">
-        <app-content-list #contentList class="content" [(channel)]="activeChannel" *ngIf="activeChannel>=0" [title]="activeChannelName"></app-content-list>
+        <app-content-list #contentList class="content" [(channel)]="activeChannel" [title]="activeChannelName" (changed)="onListChanged($event)" *ngIf="activeChannel>=0"></app-content-list>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" style="margin-top:1em;" *ngIf="!noMoreContents">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div *ngIf="noMoreContents"
+         style="text-align: center;font-size: .9em;color: #ccc;margin-top: 1em;margin-bottom: 1em;">
+        --- 没有更多数据 ---
     </div>
 </ion-content>

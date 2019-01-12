@@ -11,10 +11,9 @@ export class Tab2Page {
     subChannels: Array<any> = []
     activeChannel: Number = -1;
     activeChannelName: String = '';
-
     @ViewChild('contentList')
     contentList: ContentListComponent
-
+    noMoreContents: Boolean = false;
     constructor(
         private storage: StorageService
     ) {
@@ -36,12 +35,23 @@ export class Tab2Page {
 
     doRefresh(event) {
         let completed = false;
-        this.contentList.refresh(() => {
+        this.contentList.refresh(res => {
             event.target.complete();
             completed = true;
         })
         setTimeout(() => {
             if (!completed) event.target.complete();
         }, 5000);
+    }
+
+    loadData(event) {
+        this.contentList.getNextPage(res => {
+            event.target.complete();
+        });
+    }
+
+    onListChanged(res){
+        console.log(res);
+        this.noMoreContents = res.length < 10;
     }
 }

@@ -2,21 +2,31 @@
     <p class="headline" *ngIf="title.length > 0 && titleVisible">{{title}}</p>
     <div class="container">
         <div class="loading"  *ngIf="!contentLoaded">
-                <div class="ctt-loading"></div>
-                <div class="ctt-loading" style="width:20%"></div>
-                <div class="ctt-loading"></div>
-                <div class="ctt-loading"></div>
-                <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading" style="width:20%"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading" style="margin-top:1em;"></div>
+            <div class="ctt-loading" style="width:20%"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading" style="margin-top:1em;"></div>
+            <div class="ctt-loading" style="width:20%"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
+            <div class="ctt-loading"></div>
         </div>
 
-        <app-content-item *ngFor="let item of getDatasource()" 
-        [cateName]="title"
-        [title]="item.title" 
-        [image]="item.image" 
-        [time]="item.time"
-        [display]="item.display"
-        [content]="item.content"
-        [hits]="item.hits || 0"
+        <app-content-item *ngFor="let item of getDatasource()"
+            [cateName]="title"
+            [title]="item.title" 
+            [image]="item.image" 
+            [time]="item.time"
+            [display]="item.display"
+            [content]="item.content"
+            [hits]="item.hits || 0"
         ></app-content-item>
     </div>
 </div>

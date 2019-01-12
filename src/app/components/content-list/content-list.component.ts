@@ -28,8 +28,14 @@ export class ContentListComponent implements OnInit {
 
     @Output()
     channelChange: EventEmitter<any> = new EventEmitter();
+    @Output()
+    changed: EventEmitter<any> = new EventEmitter();
 
     contentLoaded: Boolean = false;
+    pagination = {
+        page: 1,
+        size: 10
+    }
     contents = []
 
     getDatasource() {
@@ -46,25 +52,40 @@ export class ContentListComponent implements OnInit {
         return data;
     }
 
-    getContents() {
-        // 具有特定频道的List, 抓取List值
-        this.contentLoaded = false;
+    getContents(callback?) {
+        this.pagination.page = 1;
         if (this.channel >= 0) {
-            this.http.contents({ cid: this.channel }, res => {
+            this.http.contents({ cid: this.channel, ...this.pagination }, res => {
                 this.contents = res;
                 this.contentLoaded = true;
+                this.changed.emit(res);
+                if(callback) callback();
+            })
+        }
+    }
+
+    getNextPage(callback?) {
+        this.pagination.page++;
+        if (this.channel >= 0) {
+            this.http.contents({ cid: this.channel, ...this.pagination }, res => {
+                res.forEach(i => {
+                    this.contents.push(i);
+                })
+                this.changed.emit(res);
+                if(callback) callback();
+
             })
         }
     }
 
     refresh(callback?) {
         // 具有特定频道的List, 抓取List值
-        this.contentLoaded = false;
+        this.pagination.page = 1;
         if (this.channel >= 0) {
             this.http.contents({ cid: this.channel }, res => {
                 this.contents = res;
-                this.contentLoaded = true;
-                if (callback) callback(res);
+                this.changed.emit(res);
+                if(callback) callback();
             })
         }
     }
@@ -75,7 +96,7 @@ export class ContentListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getContents();
+
     }
 
 }
