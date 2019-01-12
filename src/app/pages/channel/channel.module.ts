@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-import {ComponentsModule} from '../../components/components.module'
+import { ComponentsModule } from '../../components/components.module'
 import { ChannelPage } from './channel.page';
 
 const routes: Routes = [
@@ -24,4 +24,4 @@ const routes: Routes = [
   ],
   declarations: [ChannelPage]
 })
-export class ChannelPageModule {}
+export class ChannelPageModule { }

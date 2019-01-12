@@ -32,22 +32,22 @@ export class ChannelPage implements OnInit {
   doRefresh(event) {
     let completed = false;
     this.contentList.refresh(() => {
-        event.target.complete();
-        completed = true;
+      event.target.complete();
+      completed = true;
     })
     setTimeout(() => {
-        if (!completed) event.target.complete();
+      if (!completed) event.target.complete();
     }, 5000);
-}
-loadData(event) {
-  this.contentList.getNextPage(res => {
+  }
+  loadData(event) {
+    this.contentList.getNextPage(res => {
       event.target.complete();
-  });
-}
+    });
+  }
 
-onListChanged(res){
-  console.log(res);
-  this.noMoreContents = res.length < 10;
-}
+  onListChanged(res) {
+    console.log(res);
+    this.noMoreContents = res.length < 10;
+  }
 
 }
