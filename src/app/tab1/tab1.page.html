@@ -23,7 +23,7 @@
             <ion-slide class="more-slide">
                 <ul class="more-opts">
                     <li *ngFor="let c of scrollChannels">
-                        <div [ngStyle]="{'background-color':c.bgColor}">
+                        <div [ngStyle]="{'background-color':c.bgColor}" (click)='onClick(c)'>
                             <ion-icon [name]="c.icon"></ion-icon>
                         </div>
                         <ion-label>{{c.title}}</ion-label>

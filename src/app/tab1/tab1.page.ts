@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RequestService } from '../services/request.service'
 import { StorageService } from '../services/storage.service'
+import {NavController} from '@ionic/angular'
+import {NavigationService} from '.././services/navigation.service'
+
 
 @Component({
     selector: 'app-tab1',
@@ -15,10 +18,13 @@ export class Tab1Page {
 
     constructor(
         private http: RequestService,
-        private storage: StorageService
+        private storage: StorageService,
+        private navControl:NavController,
+        private navService:NavigationService
     ) {
         let channelTree = this.storage.getChannelTree();
         let subChannels: Array<any> = channelTree.children;
+        console.log('channel',subChannels);
         if (Array.isArray(subChannels) && subChannels.length > 0) {
             this.scrollChannels = (subChannels.find(p => p.title == '小镇概况') || {}).children || [];
             this.activityChannelId = subChannels.find(p => p.title == '小镇动态').cateId;
@@ -55,6 +61,14 @@ export class Tab1Page {
     items = [1, 2, 3, 4, 5];
     slideOpts = {
         effect: 'flip'
+    }
+
+    onClick(param){
+       this.navService.navParams={
+          cateId:param.cateId,
+          title:param.title
+       }
+       this.navControl.navigateForward('channel');
     }
 
     getRandomNumber(min: number, max: number) {

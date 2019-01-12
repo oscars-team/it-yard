@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher class="refresher" slot="fixed" pullMax="150" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-down" pullingText="下拉刷新" refreshingSpinner="circles"
+            refreshingText="加载中...">
+        </ion-refresher-content>
+    </ion-refresher>
+    
+  <app-content-list #contentList [title]='title' [titleVisible]='false' [channel]='cateId' mode='vertical' (changed)="onListChanged($event)"></app-content-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" style="margin-top:1em;" *ngIf="!noMoreContents">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div *ngIf="noMoreContents"
+       style="text-align: center;font-size: .9em;color: #ccc;margin-top: 1em;margin-bottom: 1em;">
+      --- 没有更多数据 ---
+  </div>
+</ion-content>

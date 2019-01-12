@@ -34,7 +34,7 @@ export class ContentItemComponent implements OnInit {
         moment.locale('zh-cn');
         return moment(this.time).fromNow()
     }
-
+   
 
     constructor(
         private navControl: NavController,
