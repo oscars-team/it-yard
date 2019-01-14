@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { ConfigService } from "./config.service";
 @Injectable({
     providedIn: 'root',
 
@@ -10,11 +10,12 @@ export class RequestService {
     private setTimeout = 3000; // 默认的超时时间
 
     private getApi(url) {
-        return `http://39.108.68.227:88/${url}`;
+        return `${this.config.host}/${url}`;
         // return `http://localhost/${url}`;
     }
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private config:ConfigService
     ) { }
 
     /** 获取数据
