@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController } from '@ionic/angular'
+import { Location } from "@angular/common";
 import { NavigationService } from "../../services/navigation.service";
 @Component({
     selector: 'app-content-view',
@@ -20,7 +20,7 @@ export class ContentViewPage implements OnInit {
 
     comments: Array<any> = []
     constructor(
-        private navControl: NavController,
+        private location: Location,
         private navService: NavigationService
     ) {
         let model = navService.navParams;
@@ -36,7 +36,8 @@ export class ContentViewPage implements OnInit {
     ngOnInit() {
     }
 
-    navBack() {
+    navBack(event) {
+        this.location.back();
     }
 
 }
