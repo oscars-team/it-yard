@@ -24,7 +24,6 @@ export class ChannelPage implements OnInit {
     let model = navService.navParams;
     this.title = model.title;
     this.cateId = model.cateId;
-    console.log('model',model);
   }
 
   ngOnInit() {
@@ -49,6 +48,11 @@ export class ChannelPage implements OnInit {
   onListChanged(res) {
     console.log(res);
     this.noMoreContents = res.length < 10;
+  }
+
+  ionViewWillLeave() {
+    console.log('channel leaving...')
+    this.contentList.stopVideoesPlay();
   }
 
 }
