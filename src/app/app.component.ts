@@ -32,24 +32,29 @@ export class AppComponent {
             this.statusBar.backgroundColorByHexString('#DC4345');
             this.initializeChannels();
             this.backButtonEvent();
+
         });
     }
 
     backButtonEvent() {
-        this.platform.backButton.subscribe(async () => {
-
+        this.platform.backButton.subscribeWithPriority(9999, () => {
             this.routerOutlets.forEach((outlet: IonRouterOutlet) => {
-                if (outlet && outlet.canGoBack()) {
+                if (outlet && outlet.canGoBack())
                     outlet.pop();
-                } else if (this.router.url === '/tabs/tab1') {
+                else {
                     if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
                         navigator['app'].exitApp();
                     } else {
-                        this.toaskController.create({ message: '再按一次返回退出APP', duration: 2000, position: 'middle' })
+                        var toast = this.toaskController.create({
+                            message: '再按一次返回退出APP'
+                            , duration: 2000
+                            , position: 'top'
+                        })
+                        toast.then(t => t.present())
                         this.lastTimeBackPress = new Date().getTime();
                     }
                 }
-            })
+            });
         });
     }
 
