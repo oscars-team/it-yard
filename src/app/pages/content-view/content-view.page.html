@@ -16,7 +16,7 @@
     <div class="title">{{title}}</div>
     <div class="desc">发布于 {{publish}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
     <div class="media" *ngIf="videoEnable">
-        <app-video></app-video>
+        <app-video [video]='video'></app-video>
     </div>
     <div class="content">
         <div class="article-content" [innerHTML]="content">
