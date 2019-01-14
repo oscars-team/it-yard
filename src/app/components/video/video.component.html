@@ -1,5 +1,6 @@
-<vg-player>
-    <video class="video-player" #videoPlayer [vgMedia]="videoPlayer" id="video-player" controls>
-        <source [src]='http://39.108.68.227/siteserver/video' type="video/mp4">
+<vg-player #vgPlayer (onPlayerReady)="onPlayerReady($event)">
+    <video class="video-player" #videoPlayer [vgMedia]="videoPlayer" id="video-player" controls (playing)="onPlaying($evnet)"
+        (pause)="onPause($event)">
+        <source [src]='video' type="video/mp4">
     </video>
 </vg-player>

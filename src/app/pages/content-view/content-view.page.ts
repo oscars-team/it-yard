@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController } from '@ionic/angular'
 import { NavigationService } from "../../services/navigation.service";
+import { ConfigService } from "../../services/config.service";
 @Component({
     selector: 'app-content-view',
     templateUrl: './content-view.page.html',
@@ -13,6 +13,13 @@ export class ContentViewPage implements OnInit {
     @Input() publish: String = '';
     @Input() hits: Number = 0
     @Input() video: String;
+    get videoUrl(): String {
+        let videoStr = this.video;
+        if (videoStr.startsWith('@')) {
+            return videoStr.replace('@', this.config.host);
+        }
+        return videoStr;
+    }
     get videoEnable(): Boolean {
         return this.video && this.video.length > 0
     }
@@ -20,11 +27,10 @@ export class ContentViewPage implements OnInit {
 
     comments: Array<any> = []
     constructor(
-        private navControl: NavController,
-        private navService: NavigationService
+        private navService: NavigationService,
+        private config: ConfigService
     ) {
         let model = navService.navParams;
-        console.log(model);
         this.cateName = model.cateName;
         this.title = model.title;
         this.publish = model.publish;

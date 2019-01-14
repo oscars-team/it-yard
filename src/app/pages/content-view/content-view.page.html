@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button (click)="navBack"></ion-back-button>
+            <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>{{cateName}}</ion-title>
     </ion-toolbar>
@@ -11,7 +11,7 @@
     <div class="title">{{title}}</div>
     <div class="desc">发布于 {{publish}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
     <div class="media" *ngIf="videoEnable">
-        <app-video [video]='video'></app-video>
+        <app-video [video]='videoUrl'></app-video>
     </div>
     <div class="content">
         <div class="article-content" [innerHTML]="content">

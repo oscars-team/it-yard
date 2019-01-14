@@ -28,6 +28,7 @@
             [content]="item.content"
             [video]='item.video'
             [hits]="item.hits || 0"
+            (videoPlaying)="onVideoPlaying($event)"
         ></app-content-item>
     </div>
 </div>

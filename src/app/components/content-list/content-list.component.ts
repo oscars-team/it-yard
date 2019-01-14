@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { RequestService } from '../../services/request.service'
+import { VideoComponent } from '../video/video.component';
 @Component({
     selector: 'app-content-list',
     templateUrl: './content-list.component.html',
@@ -37,7 +38,10 @@ export class ContentListComponent implements OnInit {
         size: 10
     }
     contents = []
-
+    /**
+     * 当前正在播放的视频
+     */
+    currentPlayingVideo: VideoComponent;
     getDatasource() {
         let data = this.contents;
         if (data && data.length > 0) {
@@ -56,11 +60,10 @@ export class ContentListComponent implements OnInit {
         this.pagination.page = 1;
         if (this.channel >= 0) {
             this.http.contents({ cid: this.channel, ...this.pagination }, res => {
-                console.log('res',res);
                 this.contents = res;
                 this.contentLoaded = true;
                 this.changed.emit(res);
-                if(callback) callback();
+                if (callback) callback();
             })
         }
     }
@@ -73,7 +76,7 @@ export class ContentListComponent implements OnInit {
                     this.contents.push(i);
                 })
                 this.changed.emit(res);
-                if(callback) callback();
+                if (callback) callback();
 
             })
         }
@@ -86,18 +89,29 @@ export class ContentListComponent implements OnInit {
             this.http.contents({ cid: this.channel }, res => {
                 this.contents = res;
                 this.changed.emit(res);
-                if(callback) callback();
+                if (callback) callback();
             })
         }
     }
 
 
+    onVideoPlaying(videoComponent: VideoComponent) {
+        if (this.currentPlayingVideo)
+            this.currentPlayingVideo.stop();
+        this.currentPlayingVideo = videoComponent;
+
+    }
     constructor(
         private http: RequestService
     ) { }
 
     ngOnInit() {
 
+    }
+
+    stopVideoesPlay() {
+        if (this.currentPlayingVideo)
+            this.currentPlayingVideo.stop();
     }
 
 }
