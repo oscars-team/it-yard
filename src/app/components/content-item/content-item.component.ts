@@ -43,7 +43,7 @@ export class ContentItemComponent implements OnInit {
 
     }
 
-
+   
     onClick() {
         this.navService.navParams = {
             cateName: this.cateName,
@@ -54,6 +54,7 @@ export class ContentItemComponent implements OnInit {
             content: this.content,
             hits: this.hits
         }
+        console.log('a',this.navService.navParams);
         this.navControl.navigateForward('content-view')
     }
 

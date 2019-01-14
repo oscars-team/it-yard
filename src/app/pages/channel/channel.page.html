@@ -10,7 +10,7 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <app-content-list #contentList [title]='title' [titleVisible]='false' [channel]='cateId' mode='vertical' (changed)="onListChanged($event)"></app-content-list>
+    <app-content-list #contentList [title]='title' [titleVisible]='false' [channel]='cateId' mode='horizontal' (changed)="onListChanged($event)"></app-content-list>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" style="margin-top:1em;" *ngIf="!noMoreContents">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
         </ion-infinite-scroll-content>

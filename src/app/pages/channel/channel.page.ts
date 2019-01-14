@@ -24,6 +24,7 @@ export class ChannelPage implements OnInit {
     let model = navService.navParams;
     this.title = model.title;
     this.cateId = model.cateId;
+    console.log('model',model);
   }
 
   ngOnInit() {

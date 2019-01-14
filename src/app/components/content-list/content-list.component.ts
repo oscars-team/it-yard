@@ -56,6 +56,7 @@ export class ContentListComponent implements OnInit {
         this.pagination.page = 1;
         if (this.channel >= 0) {
             this.http.contents({ cid: this.channel, ...this.pagination }, res => {
+                console.log('res',res);
                 this.contents = res;
                 this.contentLoaded = true;
                 this.changed.emit(res);
