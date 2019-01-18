@@ -3,7 +3,7 @@ import { RequestService } from '../services/request.service'
 import { StorageService } from '../services/storage.service'
 import { NavController } from '@ionic/angular'
 import { NavigationService } from '.././services/navigation.service'
-
+// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
 
 @Component({
     selector: 'app-tab1',
@@ -20,7 +20,8 @@ export class Tab1Page {
         private http: RequestService,
         private storage: StorageService,
         private navControl: NavController,
-        private navService: NavigationService
+        private navService: NavigationService,
+        // private iab: InAppBrowser
     ) {
 
     }
@@ -36,6 +37,11 @@ export class Tab1Page {
             title: param.title
         }
         this.navControl.navigateForward('channel');
+    }
+
+    navigateUrl(url: string) {
+        //this.iab.create(url);
+        window.open(url);
     }
 
     getRandomNumber(min: number, max: number) {
