@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RequestService } from '../services/request.service'
 import { StorageService } from '../services/storage.service'
-import {NavController} from '@ionic/angular'
-import {NavigationService} from '.././services/navigation.service'
+import { NavController } from '@ionic/angular'
+import { NavigationService } from '.././services/navigation.service'
+// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
 
 @Component({
     selector: 'app-tab1',
@@ -18,12 +19,42 @@ export class Tab1Page {
     constructor(
         private http: RequestService,
         private storage: StorageService,
-        private navControl:NavController,
-        private navService:NavigationService
+        private navControl: NavController,
+        private navService: NavigationService,
+        // private iab: InAppBrowser
     ) {
+
+    }
+
+    items = [1, 2, 3, 4, 5];
+    slideOpts = {
+        effect: 'flip'
+    }
+
+    onClick(param) {
+        this.navService.navParams = {
+            cateId: param.cateId,
+            title: param.title
+        }
+        this.navControl.navigateForward('channel');
+    }
+
+    navigateUrl(url: string) {
+        //this.iab.create(url);
+        window.open(url);
+    }
+
+    getRandomNumber(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    getRandomIcon() {
+        let icons = ['basketball', 'cafe', 'flag', 'megaphone', 'shirt', 'nutrition', 'ice-cream', 'gift', 'bookmarks', 'basket', 'beer', 'egg', 'pint']
+        return icons[this.getRandomNumber(0, 11)];
+    }
+
+    ngOnInit() {
         let channelTree = this.storage.getChannelTree();
         let subChannels: Array<any> = channelTree.children;
-        console.log('channel',subChannels);
         if (Array.isArray(subChannels) && subChannels.length > 0) {
             this.scrollChannels = (subChannels.find(p => p.title == '小镇概况') || {}).children || [];
             this.activityChannelId = subChannels.find(p => p.title == '小镇动态').cateId;
@@ -55,41 +86,5 @@ export class Tab1Page {
         else {
             throw `scroll channels initialize error!`;
         }
-    }
-
-    items = [1, 2, 3, 4, 5];
-    slideOpts = {
-        effect: 'flip'
-    }
-    // turnHot(id){
-    //    this.
-    // }
-
-    getHots(){
-        this.http.hots({},res=>{
-            this.hots=res;
-            console.log('hots',this.hots);
-        });
-
-    }
-    
-    onClick(param){
-       this.navService.navParams={
-          cateId:param.cateId,
-          title:param.title
-       }
-       this.navControl.navigateForward('channel');
-    }
-
-    getRandomNumber(min: number, max: number) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-    getRandomIcon() {
-        let icons = ['basketball', 'cafe', 'flag', 'megaphone', 'shirt', 'nutrition', 'ice-cream', 'gift', 'bookmarks', 'basket', 'beer', 'egg', 'pint']
-        return icons[this.getRandomNumber(0, 11)];
-    }
-
-    ngOnInit() {
-        this.getHots();
     }
 }
