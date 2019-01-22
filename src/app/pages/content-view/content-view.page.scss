@@ -36,3 +36,24 @@
         padding:.5em;
     }
 }
+.writecomment{
+    position: relative;
+    height: 35px;
+    display: flex;
+    .input{
+        height: 28px;
+        position: absolute;
+        width: 260px;
+    }
+    .button{
+        height: 28px;
+        color: rgb(61, 238, 231);
+        right: 10px;
+        position: absolute;
+        .a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+    }
+    
+}

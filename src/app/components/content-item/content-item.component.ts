@@ -17,6 +17,7 @@ export class ContentItemComponent implements OnInit {
     @Input() time: Date = new Date()
     @Input() image: String = ''
     @Input() video: String = ''
+    @Input() id:Number=0
     @Output() videoPlaying: EventEmitter<VideoComponent> = new EventEmitter();
     get videoUrl(): String {
         let videoStr = this.video;
@@ -60,6 +61,7 @@ export class ContentItemComponent implements OnInit {
 
     onClick() {
         this.navService.navParams = {
+            id:this.id,
             cateName: this.cateName,
             title: this.title,
             publish: this.getPublicFromNow(),
@@ -68,6 +70,7 @@ export class ContentItemComponent implements OnInit {
             content: this.content,
             hits: this.hits
         }
+        console.log('aa',this.navService.navParams);
         this.navControl.navigateForward('content-view')
     }
 
@@ -81,6 +84,7 @@ export class ContentItemComponent implements OnInit {
         this.videoObject.tooglePlay();
     }
     ngOnInit() {
+        
     }
 
 }

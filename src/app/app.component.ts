@@ -26,6 +26,7 @@ export class AppComponent {
             this.statusBar.overlaysWebView(true);
             this.statusBar.backgroundColorByHexString('#DC4345');
             this.initializeChannels();
+            this.initializeUnique();
         });
     }
 
@@ -45,6 +46,13 @@ export class AppComponent {
             this.navController.navigateRoot("home/tab1");
             this.splashScreen.hide();
         }
-
     }
+    initializeUnique(){
+        if(this.storage.generateUUID()==null){
+            this.storage.setUUID();
+        }else{
+            this.storage.generateUUID();
+        }
+    }
+
 }

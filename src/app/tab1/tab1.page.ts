@@ -4,7 +4,6 @@ import { StorageService } from '../services/storage.service'
 import {NavController} from '@ionic/angular'
 import {NavigationService} from '.././services/navigation.service'
 
-
 @Component({
     selector: 'app-tab1',
     templateUrl: 'tab1.page.html',
@@ -15,7 +14,7 @@ export class Tab1Page {
     scrollChannels: any = []
     activityChannelId: Number
     eventChannelId: Number
-
+    hots:[];
     constructor(
         private http: RequestService,
         private storage: StorageService,
@@ -62,7 +61,18 @@ export class Tab1Page {
     slideOpts = {
         effect: 'flip'
     }
+    // turnHot(id){
+    //    this.
+    // }
 
+    getHots(){
+        this.http.hots({},res=>{
+            this.hots=res;
+            console.log('hots',this.hots);
+        });
+
+    }
+    
     onClick(param){
        this.navService.navParams={
           cateId:param.cateId,
@@ -80,5 +90,6 @@ export class Tab1Page {
     }
 
     ngOnInit() {
+        this.getHots();
     }
 }
