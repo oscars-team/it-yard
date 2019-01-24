@@ -15,7 +15,7 @@ export class Tab1Page {
     scrollChannels: any = []
     activityChannelId: Number
     eventChannelId: Number
-
+    hots:[];
     constructor(
         private http: RequestService,
         private storage: StorageService,

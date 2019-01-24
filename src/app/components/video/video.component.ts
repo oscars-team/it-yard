@@ -14,6 +14,7 @@ export class VideoComponent implements OnInit {
     api: VgAPI
     isPlaying = false;
     ngOnInit() {
+        
     }
 
     stop() {

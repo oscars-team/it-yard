@@ -14,30 +14,22 @@
         <app-video [video]='videoUrl'></app-video>
     </div>
     <div class="content">
-        <div class="article-content" [innerHTML]="content">
+        <div class="article-content" [innerHTML]="contentUrl">
         </div>
     </div>
-    <div class="comment" *ngIf="comments.length > 0">
-        <p>网友评论</p>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客1：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客2：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客3：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客4：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客5：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
+    <div class="comment" *ngIf="comments.length > 0 ">
+        <p name="p">网友评论</p>
+        <div class="cmt-ctt" *ngFor='let item of comments let i=index'>
+            <div style="width:4em;">游客{{i+1}}</div>
+            <div style="flex:1">{{item.title}} [{{getFormattedTime(item.create_time)}}]</div>
         </div>
     </div>
+  
 </ion-content>
+
+<div class="writecomment">
+    <form novalidate (ngSubmit)='submit()'>
+        <ion-input placeholder="写评论..." class="input" [(ngModel)]='writeComment' name='first'></ion-input>
+        <ion-button color='success' size='small' class="button" type='submit' *ngIf='writeComment.trim().length > 0'><a href="#p" class="a">发表</a></ion-button>
+    </form>
+ </div>

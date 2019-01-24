@@ -20,6 +20,7 @@
         </div>
 
         <app-content-item *ngFor="let item of getDatasource()"
+            [id]='item.id'
             [cateName]="title"
             [title]="item.title" 
             [image]="item.image" 
