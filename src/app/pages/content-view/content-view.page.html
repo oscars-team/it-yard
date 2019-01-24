@@ -9,7 +9,7 @@
 
 <ion-content padding style="--background:#fafafa;">
     <div class="title">{{title}}</div>
-    <div class="desc">发布于 {{publish}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
+    <div class="desc">发布于 {{getFormattedTime(publish)}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
     <div class="media" *ngIf="videoEnable">
         <app-video [video]='videoUrl'></app-video>
     </div>
@@ -17,6 +17,7 @@
         <div class="article-content" [innerHTML]="contentUrl">
         </div>
     </div>
+
     <div class="comment" *ngIf="comments.length > 0 ">
         <p name="p">网友评论</p>
         <div class="cmt-ctt" *ngFor='let item of comments let i=index'>
@@ -24,12 +25,13 @@
             <div style="flex:1">{{item.title}} [{{getFormattedTime(item.create_time)}}]</div>
         </div>
     </div>
-  
+
 </ion-content>
 
 <div class="writecomment">
     <form novalidate (ngSubmit)='submit()'>
         <ion-input placeholder="写评论..." class="input" [(ngModel)]='writeComment' name='first'></ion-input>
-        <ion-button color='success' size='small' class="button" type='submit' *ngIf='writeComment.trim().length > 0'><a href="#p" class="a">发表</a></ion-button>
+        <ion-button color='success' size='small' class="button" type='submit' *ngIf='writeComment.trim().length > 0'><a
+                href="#p" class="a">发表</a></ion-button>
     </form>
- </div>
+</div>

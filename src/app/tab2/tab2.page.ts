@@ -51,7 +51,6 @@ export class Tab2Page {
     }
 
     onListChanged(res){
-        console.log(res);
         this.noMoreContents = res.length < 10;
     }
 }

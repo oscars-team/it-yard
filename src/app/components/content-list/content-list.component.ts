@@ -67,7 +67,7 @@ export class ContentListComponent implements OnInit {
         }
     }
 
-  
+
 
     getNextPage(callback?) {
         this.pagination.page++;
@@ -107,7 +107,7 @@ export class ContentListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        
+
     }
     //channel页面跳转停止视频
     stopVideoesPlay() {

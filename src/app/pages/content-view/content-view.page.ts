@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavigationService } from "../../services/navigation.service";
 import { ConfigService } from "../../services/config.service";
 import { RequestService } from '../../services/request.service'
-import {AlertController} from '@ionic/angular'
+import { AlertController } from '@ionic/angular'
 import * as moment from 'moment/moment'
 
 
@@ -18,8 +18,9 @@ export class ContentViewPage implements OnInit {
     @Input() publish: String = '';
     @Input() hits: Number = 0
     @Input() video: String;
-    @Input() image:String;
-    writeComment:String='';
+    @Input() image: String;
+    @Input() items: {};
+    writeComment: String = '';
     get videoUrl(): String {
         let videoStr = this.video;
         if (videoStr.startsWith('@')) {
@@ -33,12 +34,9 @@ export class ContentViewPage implements OnInit {
     }
     @Input() content: String = "";
 
-    get contentUrl():String{
-        let contentStr=this.content;
-        if(contentStr.includes('@')){
-            return contentStr.replace('@',this.config.host+'/');
-        }
-        return contentStr;
+    get contentUrl(): String {
+        let contentStr = this.content;
+        return contentStr.replace(new RegExp('@','g'),this.config.host+'/');
     }
 
     comments: Array<any> = []
@@ -46,7 +44,7 @@ export class ContentViewPage implements OnInit {
         private navService: NavigationService,
         private config: ConfigService,
         private request: RequestService,
-        private alert:AlertController
+        private alert: AlertController
     ) {
         let model = navService.navParams;
         this.id = model.id;
@@ -56,7 +54,7 @@ export class ContentViewPage implements OnInit {
         this.hits = model.hits;
         this.video = model.video;
         this.content = model.content;
-        this.image=model.image;
+        this.image = model.image;
         moment.locale('zh-cn');
     }
 
@@ -66,43 +64,44 @@ export class ContentViewPage implements OnInit {
             this.comments = res
         })
     }
-    
-    async presentAlert(){
+
+    async presentAlert() {
         const alert = await this.alert.create({
-            header:'您已评论多次',
-            buttons:['OK']
+            header: '您已评论多次',
+            buttons: ['OK']
         })
         await alert.present();
     }
-    
-    insertComment(callback?){
-        this.request.inserts({contentid:this.id,author:localStorage.getItem('app.unique.key:a23@4255#d'),content:this.writeComment},res=>{
-             //1成功
-             if(res==1){
-                 this.writeComment='';
-                 this.getComment();
-             }
-             //0评论大于>3
-             if(res==0){
-                 this.presentAlert();
-                this.writeComment='';
-             }
+
+    insertComment(callback?) {
+        this.request.inserts({ contentid: this.id, author: localStorage.getItem('app.unique.key:a23@4255#d'), content: this.writeComment }, res => {
+            //1成功
+            if (res == 1) {
+                this.writeComment = '';
+                this.getComment();
+            }
+            //0评论大于>3
+            if (res == 0) {
+                this.presentAlert();
+                this.writeComment = '';
+            }
         })
     }
-    
+
     ngOnInit() {
         this.getComment()
     }
-    
-    submit(){
-       this.insertComment();
+
+    submit() {
+        this.insertComment();
     }
 
     getFormattedTime(date: Date): String {
-        return moment(date).fromNow();
+        return moment(date).add(1,'days').fromNow()
     }
 
     navBack() {
+        
     }
 
 }

@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides class="slides" pager="false" [options]="slideOpts" >
-        <ion-slide *ngFor='let item of hots' (click)='turnHot(item.Id)'>
+    <ion-slides class="slides" pager="false" [options]="slideOpts">
+        <ion-slide *ngFor='let item of hots' (click)='turnHot(item)'>
             <img class="slide-img" [src]="item.image" />
-            <span>{{item.title}}</span>
+            <span class="slide-title">{{item.title}}</span>
         </ion-slide>
     </ion-slides>
     <div class="more-outline">
@@ -31,5 +31,5 @@
     <div style="width:100%; height:0.5em;"></div>
     <app-content-list title="小镇动态" [titleVisible]="true" [channel]="activityChannelId" mode="firstWeight"></app-content-list>
     <div style="width:100%; height:0.5em;"></div>
-    <app-content-list title="大事记"  [titleVisible]="true" [channel]="eventChannelId" mode="firstWeight"></app-content-list>
+    <app-content-list title="大事记" [titleVisible]="true" [channel]="eventChannelId" mode="firstWeight"></app-content-list>
 </ion-content>

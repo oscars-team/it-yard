@@ -1,6 +1,14 @@
 .slides{
+    position: relative;
     img{
         width: 100%;
+    }
+    .slide-title{
+        font-size: 0.75em;
+        position: absolute;
+        top: 17.5em;
+        left: 2em;
+        // color: rgb(233, 232, 236);
     }
 }
 .more-outline{

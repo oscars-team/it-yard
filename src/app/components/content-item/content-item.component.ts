@@ -17,7 +17,7 @@ export class ContentItemComponent implements OnInit {
     @Input() time: Date = new Date()
     @Input() image: String = ''
     @Input() video: String = ''
-    @Input() id:Number=0
+    @Input() id: Number = 0
     @Output() videoPlaying: EventEmitter<VideoComponent> = new EventEmitter();
     get videoUrl(): String {
         let videoStr = this.video;
@@ -26,6 +26,14 @@ export class ContentItemComponent implements OnInit {
         }
         return videoStr;
     }
+    get imageUrl(): String {
+        let imageStr = this.image;
+        if (imageStr.includes('@')) {
+            return imageStr.replace('@', this.config.host)
+        }
+        return imageStr;
+    }
+
     @Input() content: String = ''
     @Input() hits: Number = 0;
     /*
@@ -35,17 +43,25 @@ export class ContentItemComponent implements OnInit {
         默认为水平显示
     */
     displayType() {
-        if (this.image.length == 0)
-            return 'vertical';
-        if (this.video.length > 0) {
+
+        // if(this.cateName=='小镇动态'||this.cateName=='大事记'){
+        //     return 'horizental'
+        //  }
+        if(this.image.length==0&&this.video.length==0){
+             return 'horizental';
+        }
+
+        if (this.video.length > 0 ||this.image.length > 0) {
             return 'vertical'
         }
+        
         return this.display;
     }
 
+
     getPublicFromNow() {
         moment.locale('zh-cn');
-        return moment(this.time).fromNow()
+        return moment(this.time).add(1,'days').fromNow()
     }
 
     @ViewChild('videoObject') videoObject: VideoComponent
@@ -61,18 +77,18 @@ export class ContentItemComponent implements OnInit {
 
     onClick() {
         this.navService.navParams = {
-            id:this.id,
+            id: this.id,
             cateName: this.cateName,
             title: this.title,
-            publish: this.getPublicFromNow(),
+            publish: this.time,
             image: this.image,
             video: this.video,
             content: this.content,
             hits: this.hits
         }
-        console.log('aa',this.navService.navParams);
+
         this.navControl.navigateForward('content-view')
-    }
+     }
 
     onPlaying(component: VideoComponent) {
         this.videoObject = component;
@@ -84,7 +100,7 @@ export class ContentItemComponent implements OnInit {
         this.videoObject.tooglePlay();
     }
     ngOnInit() {
-        
+       console.log('content',this.title);
     }
 
 }

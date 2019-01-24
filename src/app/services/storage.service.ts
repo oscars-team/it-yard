@@ -5,9 +5,10 @@ import { RequestService } from "./request.service";
     providedIn: 'root'
 })
 export class StorageService {
-
+     
     channelTreeKey = 'app.channeltree.key:h3D2@943#d'
     uniqueKey='app.unique.key:a23@4255#d';
+
     constructor(
         private http: RequestService
     ) { }
@@ -24,7 +25,7 @@ export class StorageService {
         if (typeof (strTree) === 'string' && strTree != '' && strTree != 'undefined' && strTree != 'null') return JSON.parse(strTree);
         return null;
     }   
-    
+
     setUUID(){
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === "function") {

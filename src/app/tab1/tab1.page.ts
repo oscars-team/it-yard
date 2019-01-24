@@ -3,6 +3,7 @@ import { RequestService } from '../services/request.service'
 import { StorageService } from '../services/storage.service'
 import { NavController } from '@ionic/angular'
 import { NavigationService } from '.././services/navigation.service'
+import { ConfigService } from "../services/config.service"
 // import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
 
 @Component({
@@ -11,16 +12,16 @@ import { NavigationService } from '.././services/navigation.service'
     styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
+    hots: any = [];
     scrollChannels: any = []
     activityChannelId: Number
     eventChannelId: Number
-    hots:[];
     constructor(
         private http: RequestService,
         private storage: StorageService,
         private navControl: NavController,
         private navService: NavigationService,
+        private config: ConfigService
         // private iab: InAppBrowser
     ) {
 
@@ -44,6 +45,29 @@ export class Tab1Page {
         window.open(url);
     }
 
+    turnHot(items) {
+        this.navService.navParams = {
+            id: items.id,
+            title: items.title,
+            publish: items.time,
+            content: items.content,
+            image: items.image,
+            cateName: items.cateName
+        }
+        this.navControl.navigateForward("content-view");
+    }
+
+    //热点新闻获取   
+    getHot() {
+        this.http.hots({}, res => {
+            res.forEach(p => {
+                p.image=p.image.replace('@',this.config.host);
+            });
+            this.hots=res;
+        })
+    }
+
+
     getRandomNumber(min: number, max: number) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
@@ -62,7 +86,7 @@ export class Tab1Page {
             if (!Array.isArray(this.scrollChannels) || this.scrollChannels.length == 0)
                 throw `scroll channels initialize error!`;
 
-            console.log(subChannels);
+        
             this.scrollChannels.forEach(c => {
                 if (c.title == '小镇航拍') {
                     c.icon = 'airplane';
@@ -86,5 +110,6 @@ export class Tab1Page {
         else {
             throw `scroll channels initialize error!`;
         }
+        this.getHot();
     }
 }
