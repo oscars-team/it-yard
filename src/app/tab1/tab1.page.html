@@ -17,6 +17,15 @@
         <ion-slides pager="false" [options]="slideOpts">
             <ion-slide class="more-slide">
                 <ul class="more-opts">
+                    <li><a 
+                        style="text-decoration:none;"
+                        href="http://720yun.com/t/7af2exa5utf?from=singlemessage&isappinstalled=0&pano_id=1082997">
+                        <div [ngStyle]="{'background-color':'rgba(253,145,122,255)'}">
+                            <ion-icon name="airplane"></ion-icon>
+                        </div>
+                        <ion-label>小镇航拍</ion-label>
+                    </a>
+                    </li>
                     <li *ngFor="let c of scrollChannels">
                         <div [ngStyle]="{'background-color':c.bgColor}" (click)='onClick(c)'>
                             <ion-icon [name]="c.icon"></ion-icon>
