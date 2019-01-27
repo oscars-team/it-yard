@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavigationService } from "../../services/navigation.service";
 import { ConfigService } from "../../services/config.service";
 import { RequestService } from '../../services/request.service'
-import { AlertController } from '@ionic/angular'
+import { AlertController, NavController } from '@ionic/angular'
 import * as moment from 'moment/moment'
 
 
@@ -22,6 +22,9 @@ export class ContentViewPage implements OnInit {
     @Input() items: {};
     writeComment: String = '';
     get videoUrl(): String {
+        if (this.videoUrl.length == 0) {
+            return;
+        }
         let videoStr = this.video;
         if (videoStr.startsWith('@')) {
             return videoStr.replace('@', this.config.host);
@@ -36,7 +39,7 @@ export class ContentViewPage implements OnInit {
 
     get contentUrl(): String {
         let contentStr = this.content;
-        return contentStr.replace(new RegExp('@','g'),this.config.host+'/');
+        return contentStr.replace(new RegExp('@', 'g'), this.config.host + '/');
     }
 
     comments: Array<any> = []
@@ -44,7 +47,8 @@ export class ContentViewPage implements OnInit {
         private navService: NavigationService,
         private config: ConfigService,
         private request: RequestService,
-        private alert: AlertController
+        private alert: AlertController,
+        private navCtrl: NavController
     ) {
         let model = navService.navParams;
         this.id = model.id;
@@ -97,11 +101,11 @@ export class ContentViewPage implements OnInit {
     }
 
     getFormattedTime(date: Date): String {
-        return moment(date).add(1,'days').fromNow()
+        return moment(date).add(1, 'days').fromNow()
     }
 
     navBack() {
-        
+
     }
 
 }

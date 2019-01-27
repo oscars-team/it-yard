@@ -6,6 +6,16 @@
 
     overflow: hidden;
 
+    .contitle {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        /*! autoprefixer: off */
+        -webkit-box-orient: vertical;
+    }
+
     .title {
         padding: .5em;
         display: inline-flex;

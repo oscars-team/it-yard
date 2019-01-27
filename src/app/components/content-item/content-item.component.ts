@@ -86,7 +86,6 @@ export class ContentItemComponent implements OnInit {
             content: this.content,
             hits: this.hits
         }
-
         this.navControl.navigateForward('content-view')
      }
 
@@ -100,7 +99,7 @@ export class ContentItemComponent implements OnInit {
         this.videoObject.tooglePlay();
     }
     ngOnInit() {
-       console.log('content',this.title);
+      
     }
 
 }
