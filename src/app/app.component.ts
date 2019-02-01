@@ -75,6 +75,7 @@ export class AppComponent {
             this.splashScreen.hide();
         }
     }
+    
     initializeUnique(){
         if(this.storage.generateUUID()==null){
             this.storage.setUUID();

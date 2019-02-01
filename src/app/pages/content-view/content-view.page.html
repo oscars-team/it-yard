@@ -28,10 +28,12 @@
 
 </ion-content>
 
-<div class="writecomment">
-    <form novalidate (ngSubmit)='submit()'>
-        <ion-input placeholder="写评论..." class="input" [(ngModel)]='writeComment' name='first'></ion-input>
-        <ion-button color='success' size='small' class="button" type='submit' *ngIf='writeComment.trim().length > 0'><a
-                href="#p" class="a">发表</a></ion-button>
-    </form>
-</div>
+<form novalidate (ngSubmit)='submit()' id="form">
+        <div class="form">
+            <ion-item class="item">
+                <ion-icon name="create"></ion-icon>
+                <ion-input placeholder="说点什么..."  [(ngModel)]='writeComment' name='first'  (ionFocus)='onfouces()' (ionBlur)='onBlur()'></ion-input>
+                <ion-button  size='default' *ngIf='writeComment.trim().length>0' type='submit'>发表</ion-button>
+            </ion-item>
+        </div>
+</form>    

@@ -6,15 +6,7 @@
 
     overflow: hidden;
 
-    .contitle {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        /*! autoprefixer: off */
-        -webkit-box-orient: vertical;
-    }
+
 
     .title {
         padding: .5em;
@@ -32,7 +24,6 @@
             font-size: .8em;
         }
     }
-
     .image {
         padding: .5em;
         display: inline-flex;
@@ -45,6 +36,17 @@
             box-sizing: border-box;
         }
     }
+}
+
+
+.contitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
 }
 
 .content-vertical {

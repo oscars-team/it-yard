@@ -10,7 +10,7 @@
 
 <div class="content-vertical" *ngIf="displayType() === 'vertical'" (click)="onClick($event)">
     <div class="title">
-        <div>{{title}}</div>
+        <div class="contitle">{{title}}</div>
         <p>{{getPublicFromNow()}}</p>
     </div>
     <div class="image" *ngIf="image.length > 0 || video.length > 0">

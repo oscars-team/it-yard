@@ -68,6 +68,7 @@ export class Tab1Page {
     }
 
 
+
     getRandomNumber(min: number, max: number) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
@@ -106,6 +107,7 @@ export class Tab1Page {
                 }
 
             });
+            
         }
         else {
             throw `scroll channels initialize error!`;

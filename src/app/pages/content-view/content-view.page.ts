@@ -4,13 +4,13 @@ import { ConfigService } from "../../services/config.service";
 import { RequestService } from '../../services/request.service'
 import { AlertController, NavController } from '@ionic/angular'
 import * as moment from 'moment/moment'
-
-
 @Component({
     selector: 'app-content-view',
     templateUrl: './content-view.page.html',
     styleUrls: ['./content-view.page.scss'],
 })
+
+
 export class ContentViewPage implements OnInit {
     @Input() id: Number
     @Input() cateName: String = "栏目名称";
@@ -31,6 +31,24 @@ export class ContentViewPage implements OnInit {
         }
         return videoStr;
     }
+    onfouces() {
+        window.addEventListener('native.keyboardshow', keyboardShowHandler);
+        function keyboardShowHandler(e) {
+            if (window.scrollY < 100) {
+                window.scrollTo(0, e.keyboardHeight);
+            }
+        }
+    }
+
+
+    onBlur() {
+        window.addEventListener('native.keyboardhide', keyboardHideHandler);
+        function keyboardHideHandler(e) {
+            if (window.scrollY != 0) {
+                window.scrollTo(0, 0);
+            }
+        }
+    }
 
     get videoEnable(): Boolean {
         return this.video && this.video.length > 0
@@ -48,7 +66,7 @@ export class ContentViewPage implements OnInit {
         private config: ConfigService,
         private request: RequestService,
         private alert: AlertController,
-        private navCtrl: NavController
+        private navCtrl: NavController,
     ) {
         let model = navService.navParams;
         this.id = model.id;
@@ -61,6 +79,7 @@ export class ContentViewPage implements OnInit {
         this.image = model.image;
         moment.locale('zh-cn');
     }
+
 
 
     getComment(callback?) {
@@ -92,9 +111,11 @@ export class ContentViewPage implements OnInit {
         })
     }
 
+
     ngOnInit() {
-        this.getComment()
+        this.getComment();
     }
+
 
     submit() {
         this.insertComment();
