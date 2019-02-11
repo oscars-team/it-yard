@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { NavigationService } from "../../services/navigation.service";
 import { ConfigService } from "../../services/config.service";
 import { RequestService } from '../../services/request.service'
-import { AlertController, NavController } from '@ionic/angular'
+import { AlertController, NavController,Platform} from '@ionic/angular'
 import * as moment from 'moment/moment'
 @Component({
     selector: 'app-content-view',
@@ -21,6 +21,7 @@ export class ContentViewPage implements OnInit {
     @Input() image: String;
     @Input() items: {};
     writeComment: String = '';
+    
     get videoUrl(): String {
         if (this.videoUrl.length == 0) {
             return;
@@ -31,12 +32,12 @@ export class ContentViewPage implements OnInit {
         }
         return videoStr;
     }
+
     onfouces() {
-        window.addEventListener('native.keyboardshow', keyboardShowHandler);
-        function keyboardShowHandler(e) {
-            if (window.scrollY < 100) {
-                window.scrollTo(0, e.keyboardHeight);
-            }
+        console.log('demo');
+        window.addEventListener('keyboardDidShow',keyboardDidShow);
+        function keyboardDidShow(e){
+            window.scrollTo(0,e.keyboardHeight);
         }
     }
 
@@ -62,24 +63,15 @@ export class ContentViewPage implements OnInit {
 
     comments: Array<any> = []
     constructor(
+        private platform:Platform,
         private navService: NavigationService,
         private config: ConfigService,
         private request: RequestService,
         private alert: AlertController,
         private navCtrl: NavController,
     ) {
-        let model = navService.navParams;
-        this.id = model.id;
-        this.cateName = model.cateName;
-        this.title = model.title;
-        this.publish = model.publish;
-        this.hits = model.hits;
-        this.video = model.video;
-        this.content = model.content;
-        this.image = model.image;
-        moment.locale('zh-cn');
+       
     }
-
 
 
     getComment(callback?) {
@@ -113,9 +105,20 @@ export class ContentViewPage implements OnInit {
 
 
     ngOnInit() {
+        let model = this.navService.navParams;
+        this.id = model.id;
+        this.cateName = model.cateName;
+        this.title = model.title;
+        this.publish = model.publish;
+        this.hits = model.hits;
+        this.video = model.video;
+        this.content = model.content;
+        this.image = model.image;
+        moment.locale('zh-cn');
         this.getComment();
     }
-
+    
+   
 
     submit() {
         this.insertComment();
@@ -126,7 +129,7 @@ export class ContentViewPage implements OnInit {
     }
 
     navBack() {
-
+       
     }
 
 }
