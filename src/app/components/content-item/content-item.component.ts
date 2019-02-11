@@ -52,7 +52,7 @@ export class ContentItemComponent implements OnInit {
         }
 
         if (this.video.length > 0 ||this.image.length > 0) {
-            return 'vertical'
+            return 'horizental'
         }
         
         return this.display;

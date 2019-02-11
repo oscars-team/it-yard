@@ -28,11 +28,11 @@ export class AppComponent {
     initializeApp() {
         this.platform.ready().then(() => {
             //this.statusBar.styleDefault();
-            this.statusBar.overlaysWebView(true);
-            this.statusBar.backgroundColorByHexString('#DC4345');
+            // this.statusBar.overlaysWebView(true);
+            // this.statusBar.backgroundColorByHexString('#DC4345');
+            this.statusBar.hide();
             this.initializeChannels();
             this.backButtonEvent();
-
         });
     }
 
