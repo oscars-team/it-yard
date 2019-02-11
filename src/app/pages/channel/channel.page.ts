@@ -46,12 +46,10 @@ export class ChannelPage implements OnInit {
   }
 
   onListChanged(res) {
-    console.log(res);
     this.noMoreContents = res.length < 10;
   }
 
   ionViewWillLeave() {
-    console.log('channel leaving...')
     this.contentList.stopVideoesPlay();
   }
 

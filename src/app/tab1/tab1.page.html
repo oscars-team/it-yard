@@ -8,14 +8,9 @@
 
 <ion-content>
     <ion-slides class="slides" pager="false" [options]="slideOpts">
-        <ion-slide>
-            <img class="slide-img" src="/assets/sp-head.png" />
-        </ion-slide>
-        <ion-slide>
-            <img class="slide-img" src="/assets/sp-head.png" />
-        </ion-slide>
-        <ion-slide>
-            <img class="slide-img" src="/assets/sp-head.png" />
+        <ion-slide *ngFor='let item of hots' (click)='turnHot(item)'>
+            <img class="slide-img" [src]="item.image" />
+            <span class="slide-title">{{item.title}}</span>
         </ion-slide>
     </ion-slides>
     <div class="more-outline">

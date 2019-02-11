@@ -63,6 +63,7 @@ export class AppComponent {
         // 那么需要先下载频道, 否则APP无法正常运行
         if (!this.storage.getChannelTree())
             this.storage.setChannelTree(() => {
+                this.router.navigateByUrl("/tabs/tab1");
                 // 保存完之后才可以进入
                 setTimeout(() => {
                     this.splashScreen.hide();
@@ -70,10 +71,17 @@ export class AppComponent {
             });
         // 如果APP中已经有频道, 那么可以直接进入APP
         else {
+            this.router.navigateByUrl("/tabs/tab1");
             this.splashScreen.hide();
         }
-
+    }
+    
+    initializeUnique(){
+        if(this.storage.generateUUID()==null){
+            this.storage.setUUID();
+        }else{
+            this.storage.generateUUID();
+        }
     }
 
-    
 }

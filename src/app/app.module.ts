@@ -9,12 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-
-import { HttpClientModule } from '@angular/common/http'
-// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,    
+    ],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -26,8 +25,7 @@ import { HttpClientModule } from '@angular/common/http'
     providers: [
         StatusBar,
         SplashScreen,
-        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        // InAppBrowser
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
     bootstrap: [AppComponent]
 })

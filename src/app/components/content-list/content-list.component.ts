@@ -7,7 +7,6 @@ import { VideoComponent } from '../video/video.component';
     styleUrls: ['./content-list.component.scss']
 })
 export class ContentListComponent implements OnInit {
-
     @Input() title: String = ''
     @Input() titleVisible: Boolean = false;
     /*
@@ -68,6 +67,8 @@ export class ContentListComponent implements OnInit {
         }
     }
 
+
+
     getNextPage(callback?) {
         this.pagination.page++;
         if (this.channel >= 0) {
@@ -108,7 +109,7 @@ export class ContentListComponent implements OnInit {
     ngOnInit() {
 
     }
-
+    //channel页面跳转停止视频
     stopVideoesPlay() {
         if (this.currentPlayingVideo)
             this.currentPlayingVideo.stop();

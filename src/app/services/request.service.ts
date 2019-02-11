@@ -11,11 +11,11 @@ export class RequestService {
 
     private getApi(url) {
         return `${this.config.host}/${url}`;
-        // return `http://localhost/${url}`;
+        //return `http://localhost:54915/${url}`;
     }
     constructor(
         private http: HttpClient,
-        private config:ConfigService
+        private config: ConfigService
     ) { }
 
     /** 获取数据
@@ -43,6 +43,15 @@ export class RequestService {
         this.request('api/app/content', params, callback, error);
     }
 
+    comment(params, callback?, error?) {
+        this.request('api/app/comment', params, callback, error);
+    }
+    inserts(params, callback?, error?) {
+        this.request('api/app/comment/insert', params, callback, error);
+    }
+    hots(params, callback?, error?) {
+        this.request('api/app/content/hot', params, callback, error);
+    }
     /** 获取数据
      * param: id string 必填, 根频道编号
     **/

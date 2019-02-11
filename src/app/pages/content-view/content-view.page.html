@@ -9,35 +9,31 @@
 
 <ion-content padding style="--background:#fafafa;">
     <div class="title">{{title}}</div>
-    <div class="desc">发布于 {{publish}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
+    <div class="desc">发布于 {{getFormattedTime(publish)}} <span *ngIf="hits>0">, {{hits}}次阅读</span></div>
     <div class="media" *ngIf="videoEnable">
         <app-video [video]='videoUrl'></app-video>
     </div>
     <div class="content">
-        <div class="article-content" [innerHTML]="content">
+        <div class="article-content" [innerHTML]="contentUrl">
         </div>
     </div>
-    <div class="comment" *ngIf="comments.length > 0">
-        <p>网友评论</p>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客1：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客2：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客3：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客4：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
-        </div>
-        <div class="cmt-ctt">
-            <div style="width:4em;">游客5：</div>
-            <div style="flex:1">这个政策好这个政策好这个</div>
+
+    <div class="comment" *ngIf="comments.length > 0 ">
+        <p name="p">网友评论</p>
+        <div class="cmt-ctt" *ngFor='let item of comments let i=index'>
+            <div style="width:4em;">游客{{i+1}}</div>
+            <div style="flex:1">{{item.title}} [{{getFormattedTime(item.create_time)}}]</div>
         </div>
     </div>
+
 </ion-content>
+
+<form novalidate (ngSubmit)='submit()' id="form">
+        <div class="form">
+            <ion-item class="item">
+                <ion-icon name="create"></ion-icon>
+                <ion-input placeholder="说点什么..."  [(ngModel)]='writeComment' name='first'  (ionFocus)='onfouces()' (ionBlur)='onBlur()'></ion-input>
+                <ion-button  size='default' *ngIf='writeComment.trim().length>0' type='submit'>发表</ion-button>
+            </ion-item>
+        </div>
+</form>    

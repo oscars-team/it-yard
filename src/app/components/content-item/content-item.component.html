@@ -1,22 +1,22 @@
 <div class="content" *ngIf="displayType() === 'horizental'" (click)="onClick($event)">
     <div class="title">
-        <div>{{title}}</div>
+        <div class="contitle">{{title}}</div>
         <p>{{getPublicFromNow()}}</p>
     </div>
     <div class="image">
-        <img [src]="image" />
+        <img [src]="imageUrl" />
     </div>
 </div>
 
 <div class="content-vertical" *ngIf="displayType() === 'vertical'" (click)="onClick($event)">
     <div class="title">
-        <div>{{title}}</div>
+        <div class="contitle">{{title}}</div>
         <p>{{getPublicFromNow()}}</p>
     </div>
     <div class="image" *ngIf="image.length > 0 || video.length > 0">
         <div class="media" *ngIf="video.length>0; else elseBlock" (click)="playVideo($event)">
             <app-video #videoObject [video]='videoUrl' (playing)="onPlaying($event)"></app-video>
         </div>
-        <ng-template #elseBlock><img [src]="image" /></ng-template>
+        <ng-template #elseBlock><img [src]="imageUrl" /></ng-template>
     </div>
 </div>
