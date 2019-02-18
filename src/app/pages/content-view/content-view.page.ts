@@ -34,7 +34,6 @@ export class ContentViewPage implements OnInit {
     }
 
     onfouces() {
-        console.log('demo');
         window.addEventListener('keyboardDidShow',keyboardDidShow);
         function keyboardDidShow(e){
             window.scrollTo(0,e.keyboardHeight);
@@ -80,10 +79,10 @@ export class ContentViewPage implements OnInit {
         })
     }
 
-    async presentAlert() {
+    async presentAlert(str) {
         const alert = await this.alert.create({
-            header: '您已评论多次',
-            buttons: ['OK']
+            header: str,
+            buttons: ['知道了']
         })
         await alert.present();
     }
@@ -94,10 +93,11 @@ export class ContentViewPage implements OnInit {
             if (res == 1) {
                 this.writeComment = '';
                 this.getComment();
+                this.presentAlert('评论已发表, 等待管理员审核');
             }
             //0评论大于>3
             if (res == 0) {
-                this.presentAlert();
+                this.presentAlert('您已发表过评论');
                 this.writeComment = '';
             }
         })

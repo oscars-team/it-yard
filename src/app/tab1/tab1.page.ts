@@ -61,9 +61,9 @@ export class Tab1Page {
     getHot() {
         this.http.hots({}, res => {
             res.forEach(p => {
-                p.image=p.image.replace('@',this.config.host);
+                p.image = p.image.replace('@', this.config.host);
             });
-            this.hots=res;
+            this.hots = res;
         })
     }
 
@@ -82,12 +82,12 @@ export class Tab1Page {
         let subChannels: Array<any> = channelTree.children;
         if (Array.isArray(subChannels) && subChannels.length > 0) {
             this.scrollChannels = (subChannels.find(p => p.title == '小镇概况') || {}).children || [];
-            this.activityChannelId = subChannels.find(p => p.title == '小镇动态').cateId;
+            this.activityChannelId = subChannels.find(p => p.title == '小镇概况').cateId;
             this.eventChannelId = subChannels.find(p => p.title == '大事记').cateId;
             if (!Array.isArray(this.scrollChannels) || this.scrollChannels.length == 0)
                 throw `scroll channels initialize error!`;
 
-        
+
             this.scrollChannels.forEach(c => {
                 if (c.title == '小镇航拍') {
                     c.icon = 'airplane';
@@ -107,11 +107,15 @@ export class Tab1Page {
                 }
 
             });
-            
+
         }
         else {
             throw `scroll channels initialize error!`;
         }
         this.getHot();
+    }
+
+    navigateTo(url) {
+        window.open(url, "_blank");
     }
 }

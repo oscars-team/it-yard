@@ -2,14 +2,12 @@
     display: flex;
     box-sizing: border-box;
     height: 7em;
-    border-bottom: 1px dashed #eee;
-
     overflow: hidden;
 
 
 
     .title {
-        padding: .5em;
+        padding: .25em;
         display: inline-flex;
         flex-direction: column;
         width: 65%;
@@ -25,7 +23,7 @@
         }
     }
     .image {
-        padding: .5em;
+        padding: .25em;
         display: inline-flex;
         width: 35%;
         box-sizing: border-box;
@@ -52,11 +50,10 @@
 .content-vertical {
     display: flex;
     box-sizing: border-box;
-    border-bottom: 1px dashed #eee;
     flex-direction: column;
 
     .title {
-
+        padding: .25em;
         line-height: 1.5em;
 
         p {

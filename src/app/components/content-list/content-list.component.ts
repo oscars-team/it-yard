@@ -43,15 +43,15 @@ export class ContentListComponent implements OnInit {
     currentPlayingVideo: VideoComponent;
     getDatasource() {
         let data = this.contents;
-        if (data && data.length > 0) {
-            if (this.mode === 'firstWeight') {
-                data[0].display = 'vertical'
-            } else if (this.mode === 'vertical') {
-                data.forEach(e => {
-                    e.display = 'vertical';
-                });
-            }
-        }
+        // if (data && data.length > 0) {
+        //     if (this.mode === 'firstWeight') {
+        //         data[0].display = 'vertical'
+        //     } else if (this.mode === 'vertical') {
+        //         data.forEach(e => {
+        //             e.display = 'vertical';
+        //         });
+        //     }
+        // }
         return data;
     }
 

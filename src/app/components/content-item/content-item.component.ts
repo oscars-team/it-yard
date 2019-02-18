@@ -44,11 +44,9 @@ export class ContentItemComponent implements OnInit {
     */
     displayType() {
 
-        // if(this.cateName=='小镇动态'||this.cateName=='大事记'){
-        //     return 'horizental'
-        //  }
+
         if(this.image.length==0&&this.video.length==0){
-             return 'horizental';
+             return 'vertical';
         }
 
         if (this.video.length > 0 ||this.image.length > 0) {

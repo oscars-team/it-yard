@@ -1,8 +1,8 @@
 {
   "name": "it-yard",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "0.1.0",
+  "author": "扬中智慧电气小镇",
+  "homepage": "http://artibiton.cn/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -44,7 +44,7 @@
     "@angular-devkit/core": "~7.1.4",
     "@angular-devkit/schematics": "~7.1.4",
     "@angular/cli": "~7.1.4",
-    "@angular/compiler": "~7.1.4",
+    "@angular/compiler": "~7.1.4",  
     "@angular/compiler-cli": "~7.1.4",
     "@angular/language-service": "~7.1.4",
     "@ionic/angular-toolkit": "~1.2.0",

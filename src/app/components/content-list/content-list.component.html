@@ -1,5 +1,9 @@
 <div class="content-list">
-    <p class="headline" *ngIf="title.length > 0 && titleVisible">{{title}}</p>
+    <div class="headline" *ngIf="title.length > 0 && titleVisible">
+        <div class="pre">
+        </div>
+        <div class="title">{{title}}</div>
+    </div>
     <div class="container">
         <div class="loading"  *ngIf="!contentLoaded">
             <div class="ctt-loading"></div>

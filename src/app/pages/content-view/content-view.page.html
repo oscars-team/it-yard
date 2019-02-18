@@ -19,7 +19,7 @@
     </div>
 
     <div class="comment" *ngIf="comments.length > 0 ">
-        <p name="p">网友评论</p>
+        <p class="p">网友评论</p>
         <div class="cmt-ctt" *ngFor='let item of comments let i=index'>
             <div style="width:4em;">游客{{i+1}}</div>
             <div style="flex:1">{{item.title}} [{{getFormattedTime(item.create_time)}}]</div>
@@ -28,12 +28,12 @@
 
 </ion-content>
 
-<form novalidate (ngSubmit)='submit()' class="form">
-        <div class="form">
-            <ion-item class="item">
-                <ion-icon name="create"></ion-icon>
-                <ion-input placeholder="说点什么..."  [(ngModel)]='writeComment' name='first'  (ionFocus)='onfouces()' (ionBlur)='onBlur()'></ion-input>
-                <ion-button  size='default' *ngIf='writeComment.trim().length>0' type='submit'>发表</ion-button>
-            </ion-item>
-        </div>
-</form> 
+<ion-footer>
+    <form novalidate (ngSubmit)='submit()' >
+        <ion-item class="item">
+            <ion-icon name="create" style="color:var(--ion-color-primary);"></ion-icon>
+            <ion-input placeholder="发布公开评论..."  [(ngModel)]='writeComment' name='first'  (ionFocus)='onfouces()' (ionBlur)='onBlur()'></ion-input>
+            <ion-button  size="small" *ngIf='writeComment.trim().length>0' type='submit' style="font-size:.9em;" max-length="50">发表</ion-button>
+        </ion-item>
+    </form> 
+</ion-footer>
