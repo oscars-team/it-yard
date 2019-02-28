@@ -27,10 +27,11 @@ export class AppComponent {
     timePeriodToExit = 2000;
     initializeApp() {
         this.platform.ready().then(() => {
-            //this.statusBar.styleDefault();
-            // this.statusBar.overlaysWebView(true);
-            // this.statusBar.backgroundColorByHexString('#DC4345');
-            this.statusBar.hide();
+            this.statusBar.styleDefault();
+            //this.statusBar.overlaysWebView(true);
+            this.statusBar.backgroundColorByHexString('#DC4345');
+            this.statusBar.styleLightContent();
+            //this.statusBar.hide();
             this.initializeChannels();
             this.backButtonEvent();
         });
