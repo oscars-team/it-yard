@@ -1,7 +1,7 @@
 {
   "name": "it-yard",
-  "version": "0.1.0",
-  "author": "扬中智慧电气小镇",
+  "version": "0.8.1",
+  "author": "创意轩技术团队",
   "homepage": "http://artibiton.cn/",
   "scripts": {
     "ng": "ng",
@@ -65,20 +65,15 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project",
+  "description": "扬中智慧电气小镇",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-ionic-keyboard": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }
